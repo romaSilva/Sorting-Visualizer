@@ -1,0 +1,12 @@
+.header-container {
+  border: 1px solid black;
+  height: 10vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-container button {
+  margin: 15px;
+}
