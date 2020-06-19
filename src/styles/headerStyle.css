@@ -31,3 +31,11 @@
   cursor: pointer;
   background-color: rgb(58, 61, 66);
 }
+
+.btn-container {
+  height: 30px;
+  border-right: 0.8px solid rgb(99, 102, 107);
+
+  display: flex;
+  align-items: center;
+}
