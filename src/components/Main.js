@@ -14,7 +14,11 @@ const Main = () => {
   return (
     <div className="main-container">
       {array.map((el, index) => (
-        <div key={index} style={{ height: el }}></div>
+        <div
+          key={index}
+          className="bars"
+          style={{ height: el, backgroundColor: "blue" }}
+        ></div>
       ))}
     </div>
   );
