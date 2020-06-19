@@ -18,11 +18,11 @@
   font-size: 15px;
   letter-spacing: 1.3px;
   outline: none;
+  cursor: pointer;
 }
 
 .header-container button:hover {
   color: rgb(255, 255, 255);
-  cursor: pointer;
   background-color: rgb(53, 56, 61);
 }
 
@@ -38,4 +38,10 @@
 
   display: flex;
   align-items: center;
+}
+
+#stop {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
 }

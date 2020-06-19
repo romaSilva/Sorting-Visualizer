@@ -11,7 +11,6 @@ const Store = (props) => {
   const initialState = {
     array: [],
     sorting: undefined,
-    stopAnimation: false,
   };
 
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -67,7 +66,6 @@ const Store = (props) => {
       value={{
         array: state.array,
         sorting: state.sorting,
-        stopAnimation: state.stopAnimation,
         handleNewArray,
         handleQuickSort,
         handleSorting,

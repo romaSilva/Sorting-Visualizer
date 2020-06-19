@@ -17,7 +17,7 @@ const Header = () => {
     <div className="header-container">
       <div className="btn-container">
         <button
-          style={sorting ? { color: "#7A7A7A" } : {}}
+          style={sorting ? { color: "#7A7A7A", cursor: "not-allowed" } : {}}
           onClick={() => {
             if (!sorting) {
               handleNewArray();
@@ -30,7 +30,11 @@ const Header = () => {
 
       <div className="btn-container">
         <button
-          style={sorting !== "quick" && sorting ? { color: "#7A7A7A" } : {}}
+          style={
+            sorting !== "quick" && sorting
+              ? { color: "#7A7A7A", cursor: "not-allowed" }
+              : {}
+          }
           onClick={() => {
             if (!sorting) {
               handleSorting();
@@ -41,17 +45,29 @@ const Header = () => {
           Quick Sort
         </button>
         <button
-          style={sorting !== "bubble" && sorting ? { color: "#7A7A7A" } : {}}
+          style={
+            sorting !== "bubble" && sorting
+              ? { color: "#7A7A7A", cursor: "not-allowed" }
+              : {}
+          }
         >
           Bubble Sort
         </button>
         <button
-          style={sorting !== "heap" && sorting ? { color: "#7A7A7A" } : {}}
+          style={
+            sorting !== "heap" && sorting
+              ? { color: "#7A7A7A", cursor: "not-allowed" }
+              : {}
+          }
         >
           Heap Sort
         </button>
         <button
-          style={sorting !== "merge" && sorting ? { color: "#7A7A7A" } : {}}
+          style={
+            sorting !== "merge" && sorting
+              ? { color: "#7A7A7A", cursor: "not-allowed" }
+              : {}
+          }
         >
           Merge Sort
         </button>
@@ -60,8 +76,12 @@ const Header = () => {
       <div className="btn-container">
         <button
           id="stop"
-          style={cancelBtnStyle}
-          onClick={() => window.location.reload()}
+          style={!sorting ? { color: "#7A7A7A", cursor: "not-allowed" } : {}}
+          onClick={() => {
+            if (sorting) {
+              window.location.reload();
+            }
+          }}
         >
           <AiOutlineStop />
         </button>
@@ -72,8 +92,4 @@ const Header = () => {
 
 export default Header;
 
-const cancelBtnStyle = {
-  display: "flex",
-  alignItems: "center",
-  fontSize: 18,
-};
+const cancelBtnStyle = {};
