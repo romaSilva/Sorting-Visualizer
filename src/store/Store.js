@@ -5,7 +5,7 @@ import reducer from "./reducer";
 import { getQuickSortAnimations } from "../functions/quickSort";
 import { generateRandomArray } from "../utils/random";
 
-const ANIMATION_SPEED_MS = 10;
+const ANIMATION_SPEED_MS = 8;
 
 const Store = (props) => {
   const initialState = {
@@ -31,13 +31,6 @@ const Store = (props) => {
     });
   };
 
-  const handleCancel = () => {
-    dispatch({
-      type: "SET_STOP",
-      payload: true,
-    });
-  };
-
   const handleQuickSort = () => {
     const [tempArr, animations] = getQuickSortAnimations(state.array);
     const barsArr = document.getElementsByClassName("bars");
@@ -45,7 +38,6 @@ const Store = (props) => {
     for (let i = 0; i < animations.length; i++) {
       const firstBarStyle = barsArr[animations[i].indexes[0]].style;
       const secondBarStyle = barsArr[animations[i].indexes[1]].style;
-
       if (animations[i].type === "color") {
         setTimeout(() => {
           firstBarStyle.backgroundColor = animations[i].color;
@@ -79,7 +71,6 @@ const Store = (props) => {
         handleNewArray,
         handleQuickSort,
         handleSorting,
-        handleCancel,
       }}
     >
       {props.children}

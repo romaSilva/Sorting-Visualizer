@@ -11,7 +11,6 @@ const Header = () => {
     handleNewArray,
     handleQuickSort,
     handleSorting,
-    handleCancel,
   } = useContext(context);
 
   return (
@@ -50,7 +49,11 @@ const Header = () => {
       >
         Merge Sort
       </button>
-      <button id="stop" style={cancelBtnStyle}>
+      <button
+        id="stop"
+        style={cancelBtnStyle}
+        onClick={() => window.location.reload()}
+      >
         <AiOutlineStop />
       </button>
     </div>
