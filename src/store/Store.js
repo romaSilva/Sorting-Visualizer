@@ -5,6 +5,8 @@ import reducer from "./reducer";
 import { getQuickSortAnimations } from "../functions/quickSort";
 import { generateRandomArray } from "../utils/random";
 
+const ANIMATION_SPEED_MS = 10;
+
 const Store = (props) => {
   const initialState = {
     array: [],
@@ -20,28 +22,26 @@ const Store = (props) => {
 
   const handleQuickSort = () => {
     const [tempArr, animations] = getQuickSortAnimations(state.array);
-    for (let i = 0; i < animations.length - 1; i++) {
-      const isColorChange = i % 6 === 0 || i % 6 === 1;
-      const bars = document.getElementsByClassName("bars");
-      if (isColorChange) {
-        const color = i % 6 === 0 ? "red" : "blue";
-        const [barOneIndex, barTwoIndex] = animations[i];
-        if (barOneIndex === -1) continue;
-        const barOneStyle = bars[barOneIndex].style;
-        const barTwoStyle = bars[barTwoIndex].style;
+    console.log(animations);
+    for (let i = 0; i < animations.length; i++) {
+      const barsArr = document.getElementsByClassName("bars");
+      const firstBarStyle = barsArr[animations[i].indexes[0]].style;
+      const secondBarStyle = barsArr[animations[i].indexes[1]].style;
+
+      if (animations[i].type === "color") {
         setTimeout(() => {
-          barOneStyle.backgroundColor = color;
-          barTwoStyle.backgroundColor = color;
-        }, i * 10);
+          firstBarStyle.backgroundColor = animations[i].color;
+          secondBarStyle.backgroundColor = animations[i].color;
+        }, i * ANIMATION_SPEED_MS);
+      } else if (animations[i].type === "swap") {
+        setTimeout(() => {
+          firstBarStyle.height = `${animations[i].newHeights[0]}px`;
+          secondBarStyle.height = `${animations[i].newHeights[1]}px`;
+        }, i * ANIMATION_SPEED_MS);
       } else {
-        const [barIndex, newHeight] = animations[i];
-        if (barIndex === -1) {
-          continue;
-        }
-        const barStyle = bars[barIndex].style;
         setTimeout(() => {
-          barStyle.height = `${newHeight}px`;
-        }, i * 10);
+          firstBarStyle.backgroundColor = animations[i].color;
+        }, i * ANIMATION_SPEED_MS);
       }
     }
   };

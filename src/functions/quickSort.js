@@ -8,7 +8,17 @@ export const getQuickSortAnimations = (arr) => {
 };
 
 const quickSort = (arr, start, end, animations) => {
-  if (start >= end) return;
+  if (start >= end) {
+    console.log(start, end);
+    if (start === end) {
+      animations.push({
+        type: "definite",
+        indexes: [start, end],
+        color: "green",
+      });
+    }
+    return;
+  }
   let index = partition(arr, start, end, animations);
   quickSort(arr, start, index - 1, animations);
   quickSort(arr, index + 1, end, animations);
@@ -18,26 +28,37 @@ const partition = (arr, start, end, animations) => {
   let pivotIndex = start;
   let pivotValue = arr[end];
   for (let i = start; i < end; i++) {
-    animations.push([i, end]);
-    animations.push([i, end]);
+    animations.push({
+      type: "color",
+      indexes: [i, end],
+      color: "red",
+    });
     if (arr[i] < pivotValue) {
-      animations.push([i, arr[pivotIndex]]);
-      animations.push([pivotIndex, arr[i]]);
+      animations.push({
+        type: "swap",
+        indexes: [i, pivotIndex],
+        newHeights: [arr[pivotIndex], arr[i]],
+      });
       swap(arr, i, pivotIndex);
       pivotIndex++;
-    } else {
-      animations.push([-1, -1]);
-      animations.push([-1, -1]);
     }
-    animations.push([-1, -1]);
-    animations.push([-1, -1]);
+    animations.push({
+      type: "color",
+      indexes: [i, end],
+      color: "blue",
+    });
   }
-  animations.push([-1, -1]);
-  animations.push([-1, -1]);
-  animations.push([-1, -1]);
-  animations.push([-1, -1]);
-  animations.push([pivotIndex, arr[end]]);
-  animations.push([end, arr[pivotIndex]]);
+
+  animations.push({
+    type: "swap",
+    indexes: [pivotIndex, end],
+    newHeights: [arr[end], arr[pivotIndex]],
+  });
+  animations.push({
+    type: "definite",
+    indexes: [pivotIndex, end],
+    color: "green",
+  });
   swap(arr, pivotIndex, end);
   return pivotIndex;
 };
