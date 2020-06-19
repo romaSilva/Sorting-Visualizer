@@ -2,4 +2,6 @@ html,
 body {
   margin: 0;
   box-sizing: border-box;
+  background-color: rgb(53, 56, 61);
+  outline: none;
 }

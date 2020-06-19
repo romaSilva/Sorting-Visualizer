@@ -1,6 +1,6 @@
 .header-container {
-  border: 1px solid black;
-  height: 10vh;
+  height: 8vh;
+  background-color: rgb(47, 50, 54);
 
   display: flex;
   justify-content: center;
@@ -8,5 +8,26 @@
 }
 
 .header-container button {
+  color: rgb(212, 211, 211);
   margin: 15px;
+  padding: 3px 7px;
+  border-radius: 5px;
+  border: none;
+  background-color: rgb(47, 50, 54);
+  font-family: "Roboto", serif;
+  font-size: 15px;
+  letter-spacing: 1.3px;
+  outline: none;
+}
+
+.header-container button:hover {
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  background-color: rgb(53, 56, 61);
+}
+
+.header-container button:active {
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  background-color: rgb(58, 61, 66);
 }

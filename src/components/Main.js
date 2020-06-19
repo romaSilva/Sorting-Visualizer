@@ -17,7 +17,7 @@ const Main = () => {
         <div
           key={index}
           className="bars"
-          style={{ height: el, backgroundColor: "blue" }}
+          style={{ height: el, backgroundColor: "white" }}
         ></div>
       ))}
     </div>

@@ -9,12 +9,11 @@ export const getQuickSortAnimations = (arr) => {
 
 const quickSort = (arr, start, end, animations) => {
   if (start >= end) {
-    console.log(start, end);
     if (start === end) {
       animations.push({
         type: "definite",
         indexes: [start, end],
-        color: "green",
+        color: "#18FF00",
       });
     }
     return;
@@ -31,7 +30,7 @@ const partition = (arr, start, end, animations) => {
     animations.push({
       type: "color",
       indexes: [i, end],
-      color: "red",
+      color: "#FF00F3",
     });
     if (arr[i] < pivotValue) {
       animations.push({
@@ -45,7 +44,7 @@ const partition = (arr, start, end, animations) => {
     animations.push({
       type: "color",
       indexes: [i, end],
-      color: "blue",
+      color: "white",
     });
   }
 
@@ -57,7 +56,7 @@ const partition = (arr, start, end, animations) => {
   animations.push({
     type: "definite",
     indexes: [pivotIndex, end],
-    color: "green",
+    color: "#18FF00",
   });
   swap(arr, pivotIndex, end);
   return pivotIndex;

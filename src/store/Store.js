@@ -10,7 +10,11 @@ const ANIMATION_SPEED_MS = 10;
 const Store = (props) => {
   const initialState = {
     array: [],
+    sorting: undefined,
+    stopAnimation: false,
   };
+
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   const handleNewArray = () => {
     const arr = generateRandomArray();
@@ -20,11 +24,25 @@ const Store = (props) => {
     });
   };
 
+  const handleSorting = () => {
+    dispatch({
+      type: "SET_SORTING",
+      payload: "quick",
+    });
+  };
+
+  const handleCancel = () => {
+    dispatch({
+      type: "SET_STOP",
+      payload: true,
+    });
+  };
+
   const handleQuickSort = () => {
     const [tempArr, animations] = getQuickSortAnimations(state.array);
-    console.log(animations);
+    const barsArr = document.getElementsByClassName("bars");
+
     for (let i = 0; i < animations.length; i++) {
-      const barsArr = document.getElementsByClassName("bars");
       const firstBarStyle = barsArr[animations[i].indexes[0]].style;
       const secondBarStyle = barsArr[animations[i].indexes[1]].style;
 
@@ -44,12 +62,25 @@ const Store = (props) => {
         }, i * ANIMATION_SPEED_MS);
       }
     }
+    const RESTORE_TIME = ANIMATION_SPEED_MS * animations.length + 500;
+    setTimeout(() => {
+      dispatch({ type: "SET_ARRAY", payload: tempArr });
+      dispatch({ type: "SET_SORTING", payload: undefined });
+      Array.from(barsArr).forEach((el) => (el.style.backgroundColor = "white"));
+    }, RESTORE_TIME);
   };
 
-  const [state, dispatch] = useReducer(reducer, initialState);
   return (
     <Context.Provider
-      value={{ array: state.array, handleNewArray, handleQuickSort }}
+      value={{
+        array: state.array,
+        sorting: state.sorting,
+        stopAnimation: state.stopAnimation,
+        handleNewArray,
+        handleQuickSort,
+        handleSorting,
+        handleCancel,
+      }}
     >
       {props.children}
     </Context.Provider>
