@@ -4,6 +4,7 @@ export const getQuickSortAnimations = (arr) => {
   let animations = [];
   let tempArr = arr.slice();
   quickSort(tempArr, 0, tempArr.length - 1, animations);
+
   return [tempArr, animations];
 };
 

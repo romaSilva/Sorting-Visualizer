@@ -6,12 +6,9 @@ import { AiOutlineStop } from "react-icons/ai";
 import "../styles/headerStyle.css";
 
 const Header = () => {
-  const {
-    sorting,
-    handleNewArray,
-    handleQuickSort,
-    handleSorting,
-  } = useContext(context);
+  const { sorting, handleNewArray, handleSorting, setSorting } = useContext(
+    context
+  );
 
   return (
     <div className="header-container">
@@ -35,10 +32,10 @@ const Header = () => {
               ? { color: "#7A7A7A", cursor: "not-allowed" }
               : {}
           }
-          onClick={() => {
+          onClick={async () => {
             if (!sorting) {
-              handleSorting();
-              handleQuickSort();
+              await setSorting("quick");
+              handleSorting("quick");
             }
           }}
         >
@@ -50,6 +47,12 @@ const Header = () => {
               ? { color: "#7A7A7A", cursor: "not-allowed" }
               : {}
           }
+          onClick={async () => {
+            if (!sorting) {
+              await setSorting("bubble");
+              await handleSorting("bubble");
+            }
+          }}
         >
           Bubble Sort
         </button>
@@ -59,6 +62,12 @@ const Header = () => {
               ? { color: "#7A7A7A", cursor: "not-allowed" }
               : {}
           }
+          onClick={async () => {
+            if (!sorting) {
+              await setSorting("heap");
+              await handleSorting("heap");
+            }
+          }}
         >
           Heap Sort
         </button>
@@ -91,5 +100,3 @@ const Header = () => {
 };
 
 export default Header;
-
-const cancelBtnStyle = {};

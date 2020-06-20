@@ -3,6 +3,7 @@ import React, { useReducer } from "react";
 import Context from "./context";
 import reducer from "./reducer";
 import { getQuickSortAnimations } from "../functions/quickSort";
+import { getBubbleSortAnimations } from "../functions/bubbleSort";
 import { generateRandomArray } from "../utils/random";
 
 const ANIMATION_SPEED_MS = 8;
@@ -23,15 +24,27 @@ const Store = (props) => {
     });
   };
 
-  const handleSorting = () => {
+  const setSorting = (sortMethod) => {
     dispatch({
       type: "SET_SORTING",
-      payload: "quick",
+      payload: sortMethod,
     });
   };
 
-  const handleQuickSort = () => {
-    const [tempArr, animations] = getQuickSortAnimations(state.array);
+  const handleSorting = (sortMethod) => {
+    let tempArr = [];
+    let animations = [];
+
+    if (sortMethod === "quick") {
+      const [arr, frames] = getQuickSortAnimations(state.array);
+      tempArr = arr;
+      animations = frames;
+    } else if (sortMethod === "bubble") {
+      const [arr, frames] = getBubbleSortAnimations(state.array);
+      tempArr = arr;
+      animations = frames;
+    }
+
     const barsArr = document.getElementsByClassName("bars");
 
     for (let i = 0; i < animations.length; i++) {
@@ -67,7 +80,7 @@ const Store = (props) => {
         array: state.array,
         sorting: state.sorting,
         handleNewArray,
-        handleQuickSort,
+        setSorting,
         handleSorting,
       }}
     >
