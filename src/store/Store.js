@@ -4,6 +4,7 @@ import Context from "./context";
 import reducer from "./reducer";
 import { getQuickSortAnimations } from "../functions/quickSort";
 import { getBubbleSortAnimations } from "../functions/bubbleSort";
+import { getInsertSortAnimations } from "../functions/insertSort";
 import { generateRandomArray } from "../utils/random";
 
 const ANIMATION_SPEED_MS = 8;
@@ -43,6 +44,10 @@ const Store = (props) => {
       const [arr, frames] = getBubbleSortAnimations(state.array);
       tempArr = arr;
       animations = frames;
+    } else if (sortMethod === "insert") {
+      const [arr, frames] = getInsertSortAnimations(state.array);
+      tempArr = arr;
+      animations = frames;
     }
 
     const barsArr = document.getElementsByClassName("bars");
@@ -67,11 +72,21 @@ const Store = (props) => {
       }
     }
     const RESTORE_TIME = ANIMATION_SPEED_MS * animations.length + 500;
+
+    if (sortMethod === "insert") {
+      restoreAll(tempArr, barsArr, "#18FF00", RESTORE_TIME - 450);
+      restoreAll(tempArr, barsArr, "white", RESTORE_TIME + 450);
+    } else {
+      restoreAll(tempArr, barsArr, "white", RESTORE_TIME);
+    }
+  };
+
+  const restoreAll = (arr, bars, color, time) => {
     setTimeout(() => {
-      dispatch({ type: "SET_ARRAY", payload: tempArr });
+      dispatch({ type: "SET_ARRAY", payload: arr });
       dispatch({ type: "SET_SORTING", payload: undefined });
-      Array.from(barsArr).forEach((el) => (el.style.backgroundColor = "white"));
-    }, RESTORE_TIME);
+      Array.from(bars).forEach((el) => (el.style.backgroundColor = color));
+    }, time);
   };
 
   return (

@@ -58,18 +58,18 @@ const Header = () => {
         </button>
         <button
           style={
-            sorting !== "heap" && sorting
+            sorting !== "insert" && sorting
               ? { color: "#7A7A7A", cursor: "not-allowed" }
               : {}
           }
           onClick={async () => {
             if (!sorting) {
-              await setSorting("heap");
-              await handleSorting("heap");
+              await setSorting("insert");
+              await handleSorting("insert");
             }
           }}
         >
-          Heap Sort
+          Insert Sort
         </button>
         <button
           style={
