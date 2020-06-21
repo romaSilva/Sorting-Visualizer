@@ -35,9 +35,9 @@ Foram implementadas representações gráficas de alguns metódos de ordenação
 - Instale as dependências do projeto, digitando no terminal: `npm install`
 - Enfim, para rodar a aplicação digite: `npm start`
 
-### ou link
+### ou:
 
-​
+- [https://sorting-visual.herokuapp.com/](https://sorting-visual.herokuapp.com/)
 
 ## ♻️ Como contribuir
 
