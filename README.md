@@ -26,7 +26,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 ## 💻 Projeto
 
-Foram implementadas representações gráficas de alguns metódos de ordenação de array. O projeto foi inspirado pelo video postado por [Clément Mihailescu](https://github.com/clementmihailescu). A aplicação foi desenvolvida com [React](https://reactjs.org/).
+Foram implementadas representações gráficas de alguns metódos de ordenação de array mais famosos. O projeto foi inspirado pelo video postado por [Clément Mihailescu](https://github.com/clementmihailescu). A aplicação foi desenvolvida com [React](https://reactjs.org/).
 
 ## 🔥 Como usar
 
