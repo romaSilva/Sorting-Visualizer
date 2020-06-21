@@ -32,8 +32,6 @@ function doMerge(
   let i = startIdx;
   let j = middleIdx + 1;
   while (i <= middleIdx && j <= endIdx) {
-    // These are the values that we're comparing; we push them once
-    // to change their color.
     animations.push({
       type: "color",
       indexes: [i, j],
@@ -45,19 +43,13 @@ function doMerge(
       color: "white",
     });
     if (auxiliaryArray[i] <= auxiliaryArray[j]) {
-      // We overwrite the value at index k in the original array with the
-      // value at index i in the auxiliary array.
       animations.push({
         type: "overwrite",
         indexes: [k, k],
         newHeights: auxiliaryArray[i],
       });
-      //   animations.push([k, auxiliaryArray[i]]);
       mainArray[k++] = auxiliaryArray[i++];
     } else {
-      // We overwrite the value at index k in the original array with the
-      // value at index j in the auxiliary array.
-      //   animations.push([k, auxiliaryArray[j]]);
       animations.push({
         type: "overwrite",
         indexes: [k, k],
@@ -67,8 +59,6 @@ function doMerge(
     }
   }
   while (i <= middleIdx) {
-    // These are the values that we're comparing; we push them once
-    // to change their color.
     animations.push({
       type: "color",
       indexes: [i, i],
@@ -79,10 +69,7 @@ function doMerge(
       indexes: [i, i],
       color: "white",
     });
-    // These are the values that we're comparing; we push them a second
-    // time to revert their color.
-    // We overwrite the value at index k in the original array with the
-    // value at index i in the auxiliary array.
+
     animations.push({
       type: "overwrite",
       indexes: [k, k],
@@ -91,8 +78,6 @@ function doMerge(
     mainArray[k++] = auxiliaryArray[i++];
   }
   while (j <= endIdx) {
-    // These are the values that we're comparing; we push them once
-    // to change their color.
     animations.push({
       type: "color",
       indexes: [j, j],
@@ -103,10 +88,7 @@ function doMerge(
       indexes: [j, j],
       color: "white",
     });
-    // These are the values that we're comparing; we push them a second
-    // time to revert their color.
-    // We overwrite the value at index k in the original array with the
-    // value at index j in the auxiliary array.
+
     animations.push({
       type: "overwrite",
       indexes: [k, k],
