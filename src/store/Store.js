@@ -5,6 +5,7 @@ import reducer from "./reducer";
 import { getQuickSortAnimations } from "../functions/quickSort";
 import { getBubbleSortAnimations } from "../functions/bubbleSort";
 import { getInsertSortAnimations } from "../functions/insertSort";
+import { getMergeSortAnimations } from "../functions/mergeSort";
 import { generateRandomArray } from "../utils/random";
 
 const ANIMATION_SPEED_MS = 8;
@@ -48,8 +49,11 @@ const Store = (props) => {
       const [arr, frames] = getInsertSortAnimations(state.array);
       tempArr = arr;
       animations = frames;
+    } else if (sortMethod === "merge") {
+      const [arr, frames] = getMergeSortAnimations(state.array);
+      tempArr = arr;
+      animations = frames;
     }
-
     const barsArr = document.getElementsByClassName("bars");
 
     for (let i = 0; i < animations.length; i++) {
@@ -65,15 +69,20 @@ const Store = (props) => {
           firstBarStyle.height = `${animations[i].newHeights[0]}px`;
           secondBarStyle.height = `${animations[i].newHeights[1]}px`;
         }, i * ANIMATION_SPEED_MS);
-      } else {
+      } else if (animations[i].type === "definite") {
         setTimeout(() => {
           firstBarStyle.backgroundColor = animations[i].color;
+        }, i * ANIMATION_SPEED_MS);
+      } else {
+        setTimeout(() => {
+          firstBarStyle.height = `${animations[i].newHeights}px`;
+          secondBarStyle.height = `${animations[i].newHeights}px`;
         }, i * ANIMATION_SPEED_MS);
       }
     }
     const RESTORE_TIME = ANIMATION_SPEED_MS * animations.length + 500;
 
-    if (sortMethod === "insert") {
+    if (sortMethod === "insert" || sortMethod === "merge") {
       restoreAll(tempArr, barsArr, "#18FF00", RESTORE_TIME - 450);
       restoreAll(tempArr, barsArr, "white", RESTORE_TIME + 450);
     } else {

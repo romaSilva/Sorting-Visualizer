@@ -77,6 +77,12 @@ const Header = () => {
               ? { color: "#7A7A7A", cursor: "not-allowed" }
               : {}
           }
+          onClick={async () => {
+            if (!sorting) {
+              await setSorting("merge");
+              await handleSorting("merge");
+            }
+          }}
         >
           Merge Sort
         </button>
