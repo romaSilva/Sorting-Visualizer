@@ -14,6 +14,7 @@ Sorting Visualizer</h1>
 <p align="center">
   <img alt="Frontend" src=".github/sort2.JPG" width="80%">
 </p>
+
 ## 🚀 Tecnologias
 
 Esse projeto foi desenvolvido com as seguintes tecnologias:
